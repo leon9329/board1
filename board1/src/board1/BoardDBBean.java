@@ -117,16 +117,6 @@ public class BoardDBBean {
 				board.setContent(rs.getString(9));
 				board.setIp(rs.getString(10));
 				
-				/*board.setNum(rs.getInt("num"));
-				board.setWriter(rs.getString("writer"));
-				board.setEmail(rs.getString("email"));
-				board.setSubject(rs.getString("subject"));
-				board.setPasswd(rs.getString("passwd"));
-				board.setReg_date(rs.getTimestamp("reg_date"));
-				board.setReadcount(rs.getInt("readcount"));
-				board.setContent(rs.getString("content"));
-				board.setIp(rs.getString("ip"));*/
-				
 				list.add(board);
 			}
 		} catch (Exception e) {
