@@ -8,6 +8,7 @@
 <%request.setCharacterEncoding("utf-8"); %>
 
 <%
+//테스트중
 	//한 화면에 출력할 데이터 갯수(기본변수 1)
 	int page_size=10;
 
