@@ -5,13 +5,14 @@
 
 <%
 	request.setCharacterEncoding("utf-8");
+	String email=request.getParameter("email");
 %>
 
-<jsp:useBean id="board" class="board1.BoardDataBean"></jsp:useBean>
-<jsp:setProperty property="*" name="board"/>
+<%-- <jsp:useBean id="board" class="board1.BoardDataBean"></jsp:useBean>
+<jsp:setProperty property="*" name="board"/> --%>
 
 
-email : <%=board.getEmail() %>
+email : <%=email %>
 <%
 	
 
