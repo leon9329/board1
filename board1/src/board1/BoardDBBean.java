@@ -87,6 +87,7 @@ public class BoardDBBean {
 		}
 		return result;
 	}
+	
 	//데이터 리스트 page_size만큼 받아오기
 	public List<BoardDataBean> getList(int start, int end){
 		List<BoardDataBean> list=new ArrayList<BoardDataBean>();

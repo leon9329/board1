@@ -74,7 +74,9 @@ list:<%=list %><br> --%>
 	<tr><td><%=number-- %></td>
 		<td><%=board.getWriter() %></td>
 		<td><%=board.getEmail() %></td>
-		<td><%=board.getSubject() %></td>
+		
+		<td><a href="content.jsp?num=<%=board.getNum()%>&page=<%=currentPage%>"><%=board.getSubject() %></a></td>
+		
 		<td><%=board.getReadcount() %></td>
 		<td><%=board.getReg_date() %></td>
 		<td><%=board.getIp() %></td>
