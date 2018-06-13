@@ -9,17 +9,25 @@
 	<script src="check.js"></script>
 </head>   
 
+<%
+	int ref=Integer.parseInt(request.getParameter("ref"));
+	int re_step=Integer.parseInt(request.getParameter("re_step"));
+	int re_level=Integer.parseInt(request.getParameter("re_level"));
+	int num=Integer.parseInt(request.getParameter("num"));
+
+%>
+
 <body bgcolor="<%=bodyback_c%>">  
-<center><b>글쓰기</b>
+<center><b>댓글쓰기</b>
 <br>
-<form method="post" name="writeform" action="writePro.jsp">
+<form method="post" name="writeform" action="replyPro.jsp">
 
 <table width="430" border="1" cellspacing="0" cellpadding="0"  bgcolor="<%=bodyback_c%>" align="center">
-   <tr>
-    <td align="right" colspan="2" bgcolor="<%=value_c%>">
-	    <a href="list.jsp"> 글목록</a> 
-   </td>
-   </tr>
+<input type="hidden" name=ref value="<%=ref%>">
+<input type="hidden" name=re_step value="<%=re_step%>">
+<input type="hidden" name=re_level value="<%=re_level%>">
+<input type="hidden" name=num value="<%=num%>">
+
    <tr>
     <td  width="100"  bgcolor="<%=value_c%>" align="center">이 름</td>
     <td  width="330">
@@ -52,7 +60,7 @@
   </tr>
 <tr>      
  <td colspan=2 bgcolor="<%=value_c%>" align="center"> 
-  <input type="submit" value="글쓰기" >  
+  <input type="submit" value="댓글작성" >  
   <input type="reset" value="다시작성">
   <input type="button" value="목록보기" OnClick="window.location='list.jsp'">
 </td></tr></table>    

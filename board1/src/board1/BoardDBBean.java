@@ -37,15 +37,19 @@ public class BoardDBBean {
 		
 		try {
 			conn=getConnection();
-			String sql="insert into board0 values(board0_seq.nextval,?,?,?,?,sysdate,?,?,?)";
+			String sql="insert into board0 values(board0_seq.nextval,?,?,?,?,sysdate,?,?,?,?,?,?)";
 			pstmt=conn.prepareStatement(sql);
 			pstmt.setString(1, board.getWriter());
 			pstmt.setString(2, board.getEmail());
 			pstmt.setString(3, board.getSubject());
 			pstmt.setString(4, board.getPasswd());
-			pstmt.setInt(5, 0);
+			pstmt.setInt(5, 0);//readcount
 			pstmt.setString(6, board.getContent());
 			pstmt.setString(7, board.getIp());
+			pstmt.setInt(8, 0);//ref
+			pstmt.setInt(9, 0);//re_step
+			pstmt.setInt(10, 0);//re_level
+			
 			result=pstmt.executeUpdate();
 			
 			
@@ -98,14 +102,15 @@ public class BoardDBBean {
 		try {
 			conn=getConnection();
 			String sql="select * from (select rownum rnum,num,writer,email,subject,"
-					+ "passwd,reg_date,readcount,content,ip"
-					+ " from(select * from board0 order by num desc))"
+					+ "passwd,reg_date,readcount,content,ip,ref,re_step,re_level"
+					+ " from(select * from board0 order by ref desc,re_step asc))"
 					+ " where rnum>=? and rnum<=?";
 			
 			pstmt=conn.prepareStatement(sql);
 			pstmt.setInt(1, start);
 			pstmt.setInt(2, end);
 			rs=pstmt.executeQuery();
+			
 			while(rs.next()) {
 				BoardDataBean board=new BoardDataBean();
 				board.setNum(rs.getInt(2));
@@ -117,6 +122,9 @@ public class BoardDBBean {
 				board.setReadcount(rs.getInt(8));
 				board.setContent(rs.getString(9));
 				board.setIp(rs.getString(10));
+				board.setRef(rs.getInt(11));
+				board.setRe_step(rs.getInt(12));
+				board.setRe_level(rs.getInt(13));
 				
 				list.add(board);
 			}
@@ -162,6 +170,9 @@ public class BoardDBBean {
 				board.setReadcount(rs.getInt(7));
 				board.setContent(rs.getString(8));
 				board.setIp(rs.getString(9));
+				board.setRef(rs.getInt(rs.getInt(10)));
+				board.setRe_step(rs.getInt(rs.getInt(11)));
+				board.setRe_level(rs.getInt(rs.getInt(12)));
 				
 			}
 			
@@ -198,6 +209,10 @@ public class BoardDBBean {
 				board.setReadcount(rs.getInt(7));
 				board.setContent(rs.getString(8));
 				board.setIp(rs.getString(9));
+				board.setRef(rs.getInt(10));
+				board.setRe_step(rs.getInt(11));
+				board.setRe_level(rs.getInt(12));
+				
 				
 			}
 			
@@ -256,5 +271,53 @@ public class BoardDBBean {
 			if(pstmt != null) try {pstmt.close();} catch(Exception e) {}
 			if(conn != null) try {conn.close();} catch(Exception e) {}
 		}
+	}
+	
+	//댓글달기
+	public int reply(BoardDataBean board) {
+		int result=0;
+		Connection conn=null;
+		PreparedStatement pstmt=null;
+		
+		//부모의 댓글정보
+		int ref=board.getRef();
+		int re_step=board.getRe_step();
+		int re_level=board.getRe_level();
+		
+		try {
+			conn=getConnection();
+			
+			String sql="update board0 set re_step=re_step+1 where ref=? and re_step>?";//re_step은 오름차순 정렬 ref는 내림차순 정렬
+			pstmt=conn.prepareStatement(sql);
+			pstmt.setInt(1, ref);
+			pstmt.setInt(2, re_step);
+			pstmt.executeUpdate();
+			
+			
+			sql="insert into board0 values(board0_seq.nextval,?,?,?,?,sysdate,?,?,?,?,?,?)";
+			pstmt=conn.prepareStatement(sql);
+			pstmt.setString(1, board.getWriter());
+			pstmt.setString(2, board.getEmail());
+			pstmt.setString(3, board.getSubject());
+			pstmt.setString(4, board.getPasswd());
+			pstmt.setInt(5, 0);//readcount
+			pstmt.setString(6, board.getContent());
+			pstmt.setString(7, board.getIp());
+			pstmt.setInt(8, ref);//ref
+			pstmt.setInt(9, re_step+1);//re_step
+			pstmt.setInt(10, re_level+1);//re_level
+			
+			result = pstmt.executeUpdate();
+			
+			
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.getStackTrace();
+		}finally {
+			if(pstmt != null) try {pstmt.close();} catch(Exception e) {}
+			if(conn != null) try {conn.close();} catch(Exception e) {}
+			
+		}
+		return result;
 	}
 }

@@ -6,7 +6,10 @@ create table board0( num number primary key,
 		        	 reg_date timestamp not null,
 		        	 readcount number default 0,			
 		        	 content varchar2(2000) not null,
-		        	 ip varchar2(20) not null );
+		        	 ip varchar2(20) not null,
+		        	 ref number not null,
+					re_step number not null,
+					re_level number not null);
                
                
 create sequence board0_seq

@@ -46,12 +46,13 @@
 
 	
 
-<%-- count:<%=count%><br>
-list:<%=list %><br> --%>
+<%-- count:<%=count%><br>--%>
+list:<%=list %><br>
 <table border=1 align="center" width=700>
-	<caption>목록</caption>
+	<caption>게시판 목록</caption>
 	<p align="center">
 	<a href="writeForm.jsp">글쓰기</a>
+	갯수 : <%=count %>
 	</p>
 	<tr>
 		<th>번호</th>
@@ -74,16 +75,30 @@ list:<%=list %><br> --%>
 	<tr><td><%=number-- %></td>
 		<td><%=board.getWriter() %></td>
 		<td><%=board.getEmail() %></td>
+	<td>
+		<%
+			if(board.getRe_level()>0){
+				for(int j=0; j<board.getRe_level(); j++){
+		%>	
+				&nbsp;&nbsp;	
+		<%		}%>
+		<a href="content.jsp?num=<%=board.getNum()%>&page=<%=currentPage%>"><%=board.getSubject() %></a>
+		<% }else{%>
+		<a href="content.jsp?num=<%=board.getNum()%>&page=<%=currentPage%>"><%=board.getSubject() %></a>
 		
-		<td><a href="content.jsp?num=<%=board.getNum()%>&page=<%=currentPage%>"><%=board.getSubject() %></a></td>
+		<%		
+		}
+		%>
+		</td>
 		
 		<td><%=board.getReadcount() %></td>
 		<td><%=board.getReg_date() %></td>
 		<td><%=board.getIp() %></td>
 	</tr>
-	<%}%>
-</table>
+	
 <%} %>
+</table>
+<%}%>
 
 <!-- 페이지 처리 -->
 <center>
@@ -125,10 +140,10 @@ list:<%=list %><br> --%>
 <% 	if(endPage < pageCount){%>		
 	
 	<a href="list.jsp?page=<%=startPage+10%>">[다음]</a>
-	<%} %>
+	<%} 
+	}%>
 	
 
-<%}%>
 </center>
 	
 
