@@ -12,7 +12,7 @@
 	int contentNum = Integer.parseInt(num);
 
 	BoardDBBean manager = BoardDBBean.getInstance();
-	BoardDataBean board = manager.getContent(contentNum);
+	BoardDataBean board = manager.updateCount(contentNum);
 %>
 
 
@@ -26,10 +26,11 @@
 
 <body>
 	<center>
-		<b>글 보기</b> <br>
-		<form method="post" name="writeform" action="writePro.jsp">
+		<b>상세보기</b> <br>
+		<form method="post" name="updateForm" action="updateForm.jsp?num=<%=num%>">
 
-			<table width="430" border="1" cellspacing="0" cellpadding="0" align="center">
+			<table width="430" border="1" cellspacing="0" cellpadding="0"
+				align="center">
 				<tr>
 					<td>번호</td>
 					<td><%=board.getNum()%></td>
@@ -44,22 +45,22 @@
 				</tr>
 				<tr>
 					<td>제목</td>
-					<td colspan="3" align="center"><%=board.getSubject() %></td>
+					<td colspan="3" align="center"><%=board.getSubject()%></td>
 				</tr>
 				<tr>
 					<td>내용</td>
-					<td colspan="3" align="center" height="100"><pre><%=board.getContent() %></pre></td>
+					<td colspan="3" align="center" height="100"><pre><%=board.getContent()%></pre></td>
 				</tr>
-				<!-- <tr>
-					<td colspan=2 align="center"><input
-						type="submit" value="글쓰기"> <input type="reset"
-						value="다시작성"> <input type="button" value="목록보기"
-						OnClick="window.location='list.jsp'"></td>
-				</tr> -->
+				<tr>
+					<td colspan=4 align="center">
+					<input type="submit" value="글수정" >
+					<input type="button" value="글삭제" onClick="location.href='deleteForm.jsp'">
+					<input type="button" value="목록보기" OnClick="window.location='list.jsp'"></td>
+				</tr>
 
 			</table>
 
 		</form>
-		</center>
+	</center>
 </body>
 </html>

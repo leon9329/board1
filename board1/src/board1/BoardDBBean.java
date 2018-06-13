@@ -132,7 +132,50 @@ public class BoardDBBean {
 		return list;
 	}
 	
-	public BoardDataBean getContent(int num) {
+	public BoardDataBean updateCount(int num) {	//조회수증가 + 게시글 1개에 대한 정보구하기
+		BoardDataBean board=new BoardDataBean();
+		Connection conn=null;
+		PreparedStatement pstmt=null;
+		ResultSet rs=null;
+		
+		try {
+			conn=getConnection();
+			//조회수 1 증가
+			String sql="update board0 set readcount=readcount+1 where num=?";
+			pstmt=conn.prepareStatement(sql);
+			pstmt.setInt(1, num);
+			pstmt.executeUpdate();
+			
+			//게시글 1개 정보 얻어오기
+			sql="select * from board0 where num=?";
+			pstmt=conn.prepareStatement(sql);
+			pstmt.setInt(1, num);
+			rs=pstmt.executeQuery();
+			
+			if(rs.next()) {
+				board.setNum(rs.getInt(1));
+				board.setWriter(rs.getString(2));
+				board.setEmail(rs.getString(3));
+				board.setSubject(rs.getString(4));
+				board.setPasswd(rs.getString(5));
+				board.setReg_date(rs.getTimestamp(6));
+				board.setReadcount(rs.getInt(7));
+				board.setContent(rs.getString(8));
+				board.setIp(rs.getString(9));
+				
+			}
+			
+		} catch (Exception e) {
+			// TODO: handle exception
+		}finally {
+			if(rs!= null) try {rs.close();} catch(Exception e) {}
+			if(pstmt != null) try {pstmt.close();} catch(Exception e) {}
+			if(conn != null) try {conn.close();} catch(Exception e) {}
+		}
+		return board;
+	}
+	
+	public BoardDataBean getContent(int num) {	//게시글 1개에 대한 정보구하기
 		BoardDataBean board=new BoardDataBean();
 		Connection conn=null;
 		PreparedStatement pstmt=null;
@@ -166,5 +209,32 @@ public class BoardDBBean {
 			if(conn != null) try {conn.close();} catch(Exception e) {}
 		}
 		return board;
+	}
+	
+	//정보 수정
+	public void update(BoardDataBean board) {
+		Connection conn=null;
+		PreparedStatement pstmt=null;
+		ResultSet rs=null;
+		
+		try {
+			conn=getConnection();
+			String sql="update board0 set writer=?,subject=?,email=?,content=? where num=?";//이름,제목,이메일,내용
+			pstmt=conn.prepareStatement(sql);
+			pstmt.setString(1, board.getWriter());
+			pstmt.setString(2, board.getSubject());
+			pstmt.setString(3, board.getEmail());
+			pstmt.setString(4, board.getContent());
+			pstmt.setInt(5, board.getNum());
+			pstmt.executeUpdate();
+			
+		} catch (Exception e) {
+			// TODO: handle exception
+		}finally {
+			if(rs!= null) try {rs.close();} catch(Exception e) {}
+			if(pstmt != null) try {pstmt.close();} catch(Exception e) {}
+			if(conn != null) try {conn.close();} catch(Exception e) {}
+		}
+		
 	}
 }
