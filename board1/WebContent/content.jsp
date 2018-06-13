@@ -30,22 +30,22 @@
    <tr>
     <td  width="100"  bgcolor="<%=value_c%>" align="center" >이 름</td>
     <td  width="330">
-       <input type="text" size="10" maxlength="10" id="writer" name="writer" autofocus value=<%=board.getWriter() %>></td>
+       <input type="text" size="10" maxlength="10" id="writer" name="writer" autofocus ></td>
   </tr>
   <tr>
     <td  width="100"  bgcolor="<%=value_c%>" align="center" >제 목</td>
     <td  width="330">    
-       <input type="text" size="40" maxlength="50" id="subject" name="subject" value=<%=board.getSubject() %>></td>	
+       <input type="text" size="40" maxlength="50" id="subject" name="subject" ></td>	
   </tr>
   <tr>
     <td  width="100"  bgcolor="<%=value_c%>" align="center">Email</td>
     <td  width="330">
-       <input type="text" size="40" maxlength="30" id="email" name="email" <%=board.getEmail() %>></td>
+       <input type="text" size="40" maxlength="30" id="email" name="email" ></td>
   </tr>
   <tr>
     <td  width="100"  bgcolor="<%=value_c%>" align="center" >내 용</td>
     <td  width="330" >
-     <textarea id="content" name="content" rows="13" cols="40"><%=board.getContent() %></textarea> </td>
+     <textarea id="content" name="content" rows="13" cols="40"></textarea> </td>
   </tr>
   <tr>
     <td  width="100"  bgcolor="<%=value_c%>" align="center" >비밀번호</td>
