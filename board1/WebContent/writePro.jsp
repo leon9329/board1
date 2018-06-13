@@ -5,30 +5,29 @@
 
 <%
 	request.setCharacterEncoding("utf-8");
-	String email=request.getParameter("email");
 %>
 
-<%-- <jsp:useBean id="board" class="board1.BoardDataBean"></jsp:useBean>
-<jsp:setProperty property="*" name="board"/> --%>
+<jsp:useBean id="board" class="board1.BoardDataBean"></jsp:useBean>
+<jsp:setProperty property="*" name="board"/>
 
 
-email : <%=email %>
+
 <%
 	
 
 	//ip는 property에 없으므로 따로 넣어준다.
-	//board.setIp(request.getRemoteAddr());
+	board.setIp(request.getRemoteAddr());
 	
 	
-	//BoardDBBean manager = BoardDBBean.getInstance();
+	BoardDBBean manager = BoardDBBean.getInstance();
 	
 	//데이터 삽입	
-	//int result=manager.insert(board);
+	int result=manager.insert(board);
 	
 	
-	//if(result==1){
+	if(result==1){
 %>
-<%-- 	<script>
+<script>
 		alert("등록 완료");
 		location.href="list.jsp";
 	</script>
@@ -40,4 +39,4 @@ email : <%=email %>
 	</script>
 	
 		
-<%}%> --%>
+<%}%>

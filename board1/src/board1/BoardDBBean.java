@@ -131,4 +131,40 @@ public class BoardDBBean {
 		
 		return list;
 	}
+	
+	public BoardDataBean getContent(int num) {
+		BoardDataBean board=new BoardDataBean();
+		Connection conn=null;
+		PreparedStatement pstmt=null;
+		ResultSet rs=null;
+		
+		try {
+			conn=getConnection();
+			String sql="select * from board0 where num=?";
+			pstmt=conn.prepareStatement(sql);
+			pstmt.setInt(1, num);
+			rs=pstmt.executeQuery();
+			
+			if(rs.next()) {
+				board.setNum(rs.getInt(1));
+				board.setWriter(rs.getString(2));
+				board.setEmail(rs.getString(3));
+				board.setSubject(rs.getString(4));
+				board.setPasswd(rs.getString(5));
+				board.setReg_date(rs.getTimestamp(6));
+				board.setReadcount(rs.getInt(7));
+				board.setContent(rs.getString(8));
+				board.setIp(rs.getString(9));
+				
+			}
+			
+		} catch (Exception e) {
+			// TODO: handle exception
+		}finally {
+			if(rs!= null) try {rs.close();} catch(Exception e) {}
+			if(pstmt != null) try {pstmt.close();} catch(Exception e) {}
+			if(conn != null) try {conn.close();} catch(Exception e) {}
+		}
+		return board;
+	}
 }
