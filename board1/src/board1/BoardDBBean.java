@@ -237,4 +237,24 @@ public class BoardDBBean {
 		}
 		
 	}
+	
+	//±€ ªË¡¶
+	public void delete(int num) {
+		Connection conn=null;
+		PreparedStatement pstmt=null;
+		
+		try {
+			conn=getConnection();
+			String sql="delete from board0 where num=?";
+			pstmt=conn.prepareStatement(sql);
+			pstmt.setInt(1, num);
+			pstmt.executeUpdate();
+			
+		} catch (Exception e) {
+			// TODO: handle exception
+		}finally {
+			if(pstmt != null) try {pstmt.close();} catch(Exception e) {}
+			if(conn != null) try {conn.close();} catch(Exception e) {}
+		}
+	}
 }

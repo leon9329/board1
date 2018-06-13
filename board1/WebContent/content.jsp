@@ -54,7 +54,7 @@
 				<tr>
 					<td colspan=4 align="center">
 					<input type="submit" value="글수정" >
-					<input type="button" value="글삭제" onClick="location.href='deleteForm.jsp'">
+					<input type="button" value="글삭제" onClick="location.href='deleteForm.jsp?num=<%=num%>'">
 					<input type="button" value="목록보기" OnClick="window.location='list.jsp'"></td>
 				</tr>
 
