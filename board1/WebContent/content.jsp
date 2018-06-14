@@ -12,7 +12,7 @@
 	int contentNum = Integer.parseInt(num);
 
 	BoardDBBean manager = BoardDBBean.getInstance();
-	BoardDataBean board = manager.updateCount(contentNum);
+	BoardDataBean board = manager.getContent(contentNum);
 %>
 
 
@@ -27,10 +27,7 @@
 <body>
 	<center>
 		<b>상세보기</b> <br>
-		<form method="post" name="updateForm" action="updateForm.jsp?num=<%=num%>">
-
-			<table width="430" border="1" cellspacing="0" cellpadding="0"
-				align="center">
+			<table width="430" border="1" cellspacing="0" cellpadding="0" align="center">
 				<tr>
 					<td>번호</td>
 					<td><%=board.getNum()%></td>
@@ -54,14 +51,14 @@
 				<tr>
 					<td colspan=4 align="center">
 					<input type="button" value="댓글" onClick="location.href='replyForm.jsp?ref=<%=board.getRef()%>&re_step=<%=board.getRe_step()%>&re_level=<%=board.getRe_level()%>&num=<%=num%>'">
-			 		<input type="submit" value="글수정" >
+			 		<input type="button" value="글수정" onClick="">
 					<input type="button" value="글삭제" onClick="location.href='deleteForm.jsp?num=<%=num%>'">
 					<input type="button" value="목록보기" OnClick="window.location='list.jsp'"></td>
 				</tr>
 
 			</table>
 
-		</form>
+
 	</center>
 </body>
 </html>

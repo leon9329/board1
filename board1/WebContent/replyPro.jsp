@@ -1,3 +1,4 @@
+<%@page import="board1.BoardDataBean"%>
 <%@page import="board1.BoardDBBean"%>
 <%@ page language="java" contentType="text/html; charset=utf-8"
     pageEncoding="utf-8"%>
@@ -6,10 +7,11 @@
 <jsp:useBean id="board" class="board1.BoardDataBean"></jsp:useBean>
 <jsp:setProperty property="*" name="board"/>
 
-<%
+<%	
 	
-	board.setIp(request.getRemoteAddr());
 	BoardDBBean manager=BoardDBBean.getInstance();
+
+	board.setIp(request.getRemoteAddr());
 	int result=manager.reply(board);
 	
 	if(result==1){

@@ -15,6 +15,7 @@
 	int re_level=Integer.parseInt(request.getParameter("re_level"));
 	int num=Integer.parseInt(request.getParameter("num"));
 
+
 %>
 
 <body bgcolor="<%=bodyback_c%>">  
@@ -60,7 +61,7 @@
   </tr>
 <tr>      
  <td colspan=2 bgcolor="<%=value_c%>" align="center"> 
-  <input type="submit" value="댓글작성" >  
+  <input type="submit" value="댓글작성">  
   <input type="reset" value="다시작성">
   <input type="button" value="목록보기" OnClick="window.location='list.jsp'">
 </td></tr></table>    

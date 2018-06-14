@@ -23,7 +23,7 @@
    <tr>
     <td  width="100"  bgcolor="<%=value_c%>" align="center">이 름</td>
     <td  width="330">
-       <input type="text" size="10" maxlength="10" id="writer" name="writer" autofocus></td>
+       <input type="text" size="10" maxlength="10" id="writer" name="writer" autofocus ></td>
   </tr>
   <tr>
     <td  width="100"  bgcolor="<%=value_c%>" align="center" >제 목</td>
@@ -31,23 +31,23 @@
        <%if(request.getParameter("num")==null){%> <!--  원문 -->
        <input type="text" size="40" maxlength="50" id="subject" name="subject" ></td>
 	<%}else{%>									<!-- 답글 -->
-	   <input type="text" size="40" maxlength="50" id="subject" name="subject" value="[답변]"></td>
+	   <input type="text" size="40" maxlength="50" id="subject" name="subject" value="[답변]" ></td>
 	<%}%>	
   </tr>
   <tr>
     <td  width="100"  bgcolor="<%=value_c%>" align="center">Email</td>
     <td  width="330">
-       <input type="text" size="40" maxlength="30" id="email" name="email" ></td>
+       <input type="text" size="40" maxlength="30" id="email" name="email"></td>
   </tr>
   <tr>
     <td  width="100"  bgcolor="<%=value_c%>" align="center" >내 용</td>
     <td  width="330" >
-     <textarea id="content" name="content" rows="13" cols="40"></textarea> </td>
+     <textarea id="content" name="content" rows="13" cols="40" ></textarea> </td>
   </tr>
   <tr>
     <td  width="100"  bgcolor="<%=value_c%>" align="center" >비밀번호</td>
     <td  width="330" >
-     <input type="password" size="8" maxlength="12" id="passwd" name="passwd"> 
+     <input type="password" size="8" maxlength="12" id="passwd" name="passwd" > 
 	 </td>
   </tr>
 <tr>      

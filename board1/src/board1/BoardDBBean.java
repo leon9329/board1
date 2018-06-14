@@ -37,7 +37,7 @@ public class BoardDBBean {
 		
 		try {
 			conn=getConnection();
-			String sql="insert into board0 values(board0_seq.nextval,?,?,?,?,sysdate,?,?,?,?,?,?)";
+			String sql="insert into board0 values(board0_seq.nextval,?,?,?,?,sysdate,?,?,?,board0_seq.nextval,?,?)";
 			pstmt=conn.prepareStatement(sql);
 			pstmt.setString(1, board.getWriter());
 			pstmt.setString(2, board.getEmail());
@@ -46,9 +46,8 @@ public class BoardDBBean {
 			pstmt.setInt(5, 0);//readcount
 			pstmt.setString(6, board.getContent());
 			pstmt.setString(7, board.getIp());
-			pstmt.setInt(8, 0);//ref
-			pstmt.setInt(9, 0);//re_step
-			pstmt.setInt(10, 0);//re_level
+			pstmt.setInt(8, 0);//re_step
+			pstmt.setInt(9, 0);//re_level
 			
 			result=pstmt.executeUpdate();
 			
