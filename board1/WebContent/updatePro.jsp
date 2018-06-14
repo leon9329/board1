@@ -11,6 +11,7 @@
 <jsp:setProperty property="*" name="board"/>
 
 <%
+	String pageNum=request.getParameter("page");
 	BoardDBBean manager=BoardDBBean.getInstance();
 	BoardDataBean old=manager.getContent(board.getNum());
 	

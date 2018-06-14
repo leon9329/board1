@@ -51,7 +51,7 @@
 				<tr>
 					<td colspan=4 align="center">
 					<input type="button" value="댓글" onClick="location.href='replyForm.jsp?ref=<%=board.getRef()%>&re_step=<%=board.getRe_step()%>&re_level=<%=board.getRe_level()%>&num=<%=num%>'">
-			 		<input type="button" value="글수정" onClick="">
+			 		<input type="button" value="글수정" onClick="location.href='updateForm.jsp?num=<%=num%>&page=<%=page%>'">
 					<input type="button" value="글삭제" onClick="location.href='deleteForm.jsp?num=<%=num%>'">
 					<input type="button" value="목록보기" OnClick="window.location='list.jsp'"></td>
 				</tr>

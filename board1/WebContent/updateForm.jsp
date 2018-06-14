@@ -5,7 +5,7 @@
 
 <%
 	int num = Integer.parseInt(request.getParameter("num"));
-	
+	String pageNum = request.getParameter("page");
 	BoardDBBean manager=BoardDBBean.getInstance();
 	BoardDataBean board=manager.getContent(num);
 %>
@@ -25,6 +25,7 @@
 
 <table width="430" border="1" cellspacing="0" cellpadding="0"  bgcolor="<%=bodyback_c%>" align="center">
    <input type="hidden" name="num" value=<%=board.getNum() %>>
+   <input type="hidden" name="page" value=<%=pageNum %>>
    <tr>
     <td  width="100"  bgcolor="<%=value_c%>" align="center">이 름</td>
     <td  width="330">
