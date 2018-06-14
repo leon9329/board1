@@ -4,7 +4,7 @@
     pageEncoding="utf-8"%>
 
 <%
-	request.setCharacterEncoding("utf-8");//test
+	request.setCharacterEncoding("utf-8");
 %>
 
 <jsp:useBean id="board" class="board1.BoardDataBean"></jsp:useBean>
